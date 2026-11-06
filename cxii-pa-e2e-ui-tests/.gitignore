@@ -1,0 +1,52 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env.test
+
+# Output of playwright test runs
+playwright-report/
+test-results/
+
+# Output of playwright allure result test runs
+allure-results/
+
+# Output of playwright allure report test runs
+allure-report/
+
+# Output of playwright failure screenshots
+failure-test-screenshots/
+
+# Jetbrains IDE
+.idea
+
+# vscode
+.vscode/
+
+# Authentication playwright. See: https://playwright.dev/docs/auth 
+playwright/.auth/
+/user-data
+/tests/ui/user-data
+
+# Playwright
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.DS_Store
+/tests/downloads
+playwright.config.ts
+results-summary.json
+.env.dev
+.env.canary
+.env.prod

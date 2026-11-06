@@ -1,0 +1,18 @@
+# Each line is a file pattern followed by one or more owners.
+# Order is important; the last matching pattern takes the most precedence.
+
+# All of Sales/Service and Commerce code owners will be the default owners for everything in the repo and will be
+# requested for review when someone opens a pull request, unless a later match takes precedence.
+# Michelle, Mahima, Justin + Yogitha, Shubham Gupta, Shubham Gautam, Unnati
+* michelle.ha@sap.com mahima.nath@sap.com justin.macmillin@sap.com yogitha.k.m@sap.com shubham.gupta03@sap.com shubham.gautam@sap.com unnati.desai@sap.com
+
+# Sales/Service specific code ownership
+# Michelle, Mahima, Justin, Puneet
+**/SalesAndService michelle.ha@sap.com mahima.nath@sap.com justin.macmillin@sap.com puneet.mahali@sap.com
+
+# Commerce specific code ownership
+# Yogitha, Shubham Gupta, Shubham Gautam, Unnati
+**/Commerce yogitha.k.m@sap.com shubham.gupta03@sap.com shubham.gautam@sap.com unnati.desai@sap.com
+
+# Make readmes not require specific code owners to reduce PR email noise
+**/README.md

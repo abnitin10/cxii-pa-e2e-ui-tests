@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "groupName": "all non-major"
+    }
+  ],
+  "prHourlyLimit": 0,
+  "ignoreDeps": ["npm"]
+}

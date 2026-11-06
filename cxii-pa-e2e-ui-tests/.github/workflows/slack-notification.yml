@@ -1,0 +1,23 @@
+name: PR notification
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+jobs:
+  notify:
+    name: PR notification
+    runs-on: [self-hosted]
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Post message
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          webhook-type: webhook-trigger
+          webhook: https://hooks.slack.com/triggers/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
+          payload: |
+            {
+              "title": ${{ toJson(github.event.pull_request.title) }},
+              "author": ${{ toJson(github.event.pull_request.user.login) }},
+              "pullRequestLink": ${{ toJson(github.event.pull_request.html_url) }}
+            }

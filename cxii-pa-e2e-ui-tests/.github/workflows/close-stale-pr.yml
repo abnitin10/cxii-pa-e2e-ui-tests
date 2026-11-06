@@ -1,0 +1,33 @@
+name: 'Close stale PRs'
+on:
+  schedule:
+    # Runs every day at 1:00 AM
+    #        ┌───────────── minute (0 - 59)
+    #        │ ┌───────────── hour (0 - 23)
+    #        │ │ ┌───────────── day of the month (1 - 31)
+    #        │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+    #        │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #        │ │ │ │ │
+    #        │ │ │ │ │
+    #        │ │ │ │ │
+    #        * * * * *
+    - cron: '0 1 * * *'
+
+jobs:
+  stale:
+    runs-on: [self-hosted]
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/stale@v10
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          days-before-pr-stale: 30
+          days-before-pr-close: 7
+          days-before-issue-stale: -1
+          days-before-issue-close: -1
+          stale-pr-message: 'This PR is stale because it has been open 30 days with no activity. Remove stale label or comment or this will be closed automatically in 7 days.'
+          close-pr-message: 'This PR was closed because it has been stalled for 7 days with no activity.'
+          delete-branch: 'true'

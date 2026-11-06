@@ -1,0 +1,30 @@
+{
+  "name": "cxii-pa-e2e-ui-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test:ui": "npx playwright test --grep @login --ui",
+    "test:debug": "npx playwright test --grep @PPE --debug",
+    "test:dev": "E2E_BASE_URL=https://cxii-pa.cxai.dev.sap E2E_API_BASE_URL=https://cxii-pi.cxai.dev.sap npx playwright test",
+    "test:canary": "ENV=canary E2E_BASE_URL=https://ai-assistant-usea-canary.cxai.dev.sap E2E_API_BASE_URL=https://ai-assistant-usea-canary-api.cxai.dev.sap npx playwright test",
+    "test:local": "ENV=local E2E_BASE_URL=http://localhost:3000 E2E_API_BASE_URL=http://localhost:8080 npx playwright test",
+    "test:prod-usea": "ENV=prod-usea E2E_BASE_URL=https://ai-assistant-usea-prod.cxai.cloud.sap E2E_API_BASE_URL=https://ai-assistant-usea-prod-api.cxai.cloud.sap npx playwright test",
+    "test:prod-dewc": "ENV=prod-dewc E2E_BASE_URL=https://ai-assistant-dewc-prod.cxai.cloud.sap E2E_API_BASE_URL=https://ai-assistant-dewc-prod-api.cxai.cloud.sap npx playwright test"
+  },
+  "dependencies": {
+    "@types/node": "22.18.12",
+    "axios": "1.12.2",
+    "dotenv": "17.2.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "allure-commandline": "2.34.1",
+    "allure-playwright": "3.4.1",
+    "otplib": "12.0.1",
+    "puppeteer": "^24.12.1",
+    "tar": "7.5.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3",
+    "unzipper": "0.12.3"
+  }
+}

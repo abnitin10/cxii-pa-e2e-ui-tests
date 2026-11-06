@@ -1,0 +1,263 @@
+
+{
+  "createAccountSummary": [
+    {
+      "accountName": "Cbont",
+      "opportunity": "51 - Cbont Deal",
+      "caseType": "81 - Washing Machine not rinsing clothes properly",
+      "renderLength": "Medium"
+    },
+    {
+      "accountName": "Cbont",
+      "opportunity": "",
+      "caseType": "",
+      "renderLength": "Long"
+    },
+    {
+      "accountName": "Cbont",
+      "opportunity": "",
+      "caseType": "",
+      "renderLength": "Short"
+    }
+  ],"SmartActions": [
+    {
+      "duration": "Last 3 Days"
+    },
+    {
+      "duration": "Last 5 Days"
+    },
+    {
+      "duration": "Last 7 Days"
+    },
+    {
+      "duration": "Last 30 Days"
+    },
+    {
+      "duration": "Last 60 Days"
+    }
+  ],
+  "summarizeSalesOppotunity": [
+    {
+      "accountName": "Cbont",
+      "renderLength": "Long"
+    },
+    {
+      "accountName": "Cbont",
+      "renderLength": "short"
+    },
+    {
+      "accountName": "Cbont",
+      "renderLength": "Medium"
+    }
+  ],
+  "personalizedProspectingEmail": [
+    {
+      "firstName": "Joe",
+      "renderTone": "Happy",
+      "renderLength": "Medium",
+      "productTextbox": "Product Repair",
+      "talkingPointsTextbox": "Discuss the issue",
+      "callAction": "Schedule a call"
+    },
+    {
+      "firstName": "cbont",
+      "renderTone": "witty",
+      "renderLength": "Long",
+      "productTextbox": "",
+      "talkingPointsTextbox": "",
+      "callAction": ""
+    }
+  ],
+  "generateQuestionForDiscoveryCall": [
+    {
+      "firstName": "Joe",
+      "renderTone": "witty",
+      "renderCount": "10",
+      "challengesTextbox": "Repair issue",
+      "customerTextbox": "Resolved after multiple visits"
+    }
+  ],
+  "writeCaseOverview": [
+    {
+      "firstName": "cbont",
+      "renderTone": "witty",
+      "renderLength": "Long",
+      "highlightTextbox": "Certain defects found",
+      "actionTextbox": "scheduled visit to resolve"
+    }
+  ],
+  "writeCustServiceResponse": [
+    {
+      "searchTextbox": "cbont",
+      "informationTextbox": "check on defects",
+      "linkToPublicTextbox": "https://www.cbontindustries.com"
+    }
+  ],
+  "createKnowledgeBasedArticle": [
+    {
+      "accountName": "256",
+      "additionalInformation": "water input is not correct"
+    },
+    {
+      "accountName": "249",
+      "additionalInformation": ""
+    }
+  ],
+  "generateBlogPost": [
+    {
+      "ProductName": "a",
+      "renderTone": "witty",
+      "renderLength": "Long",
+      "description": "the Canon a A480 is a classic gem worth rediscovering. Whether youre capturing travel memories, family moments, or everyday snapshots, this little powerhouse delivers clear, vibrant photos without overwhelming you with complex settings",
+      "instructions": "a A480 may not boast the flashy specs of today’s mirrorless monsters"
+    },
+    {
+      "ProductName": "a",
+      "renderTone": "Happy",
+      "renderLength": "Medium",
+      "description": "the Canon a A480 is a classic gem worth rediscovering. Whether youre capturing travel memories, family moments, or everyday snapshots, this little powerhouse delivers clear, vibrant photos without overwhelming you with complex settings",
+      "instructions": "a A480 may not boast the flashy specs of today’s mirrorless monsters"
+    }
+  ],
+  "createSocialMediaPost": [
+    {
+      "ProductName": "a",
+      "renderTone": "Professional",
+      "renderLength": "Short",
+      "additionalGuidance": "",
+      "platformSelect": "Facebook"
+    },
+    {
+      "ProductName": "b",
+      "renderTone": "Witty",
+      "renderLength": "Medium",
+      "additionalGuidance": "Generate a statement with the product additional information",
+      "platformSelect": "X"
+    },
+    {
+      "ProductName": "c",
+      "renderTone": "Happy",
+      "renderLength": "Long",
+      "additionalGuidance": "",
+      "platformSelect": "Threads"
+    },
+    {
+      "ProductName": "d",
+      "renderTone": "Direct",
+      "renderLength": "Short",
+      "additionalGuidance": "Generate a statement with the product additional information",
+      "platformSelect": "Instagram"
+    },
+    {
+      "ProductName": "e",
+      "renderTone": "Empathetic",
+      "renderLength": "Medium",
+      "additionalGuidance": "",
+      "platformSelect": "Facebook"
+    },
+    {
+      "ProductName": "f",
+      "renderTone": "Personal",
+      "renderLength": "Long",
+      "additionalGuidance": "Generate a statement with the product additional information",
+      "platformSelect": "X"
+    },
+    {
+      "ProductName": "g",
+      "renderTone": "Confident",
+      "renderLength": "Short",
+      "additionalGuidance": "",
+      "platformSelect": "Threads"
+    },
+    {
+      "ProductName": "h",
+      "renderTone": "Professional",
+      "renderLength": "Medium",
+      "additionalGuidance": "Generate a statement with the product additional information",
+      "platformSelect": "Instagram"
+    }
+  ],
+  "generateProductBannerTxt": [
+    {
+      "ProductName": "a",
+      "CustomInstructions": "16 Shooting Modes - Including Auto, Portrait, Indoor, Night Snapshot, and more - just point, shoot, and let the camera do the thinking.",
+      "renderTone": "witty",
+      "renderSuggestions": "10"
+    },
+    {
+      "ProductName": "P",
+      "CustomInstructions": "",
+      "renderTone": "Empathetic",
+      "renderSuggestions": "15"
+    }
+  ],
+  "AskTheProduct": [
+    {
+      "ProductName": "a",
+      "askProductQuestion": "what is the Name of the Product?"
+    }
+  ],
+  "ProductDescription": [
+    {
+      "flowType": "Add Contact",
+      "template": "Standard Description Template",
+      "prompt": "a",
+      "renderTone": "Happy",
+      "renderLength": "Medium"
+    },
+    {
+      "flowType": "List  View",
+      "template": "Standard Description Template",
+      "prompt": "f",
+      "renderTone": "Happy",
+      "renderLength": "Medium"
+    }
+  ],
+  "ProductAttributes": [
+    {
+      "productName":"a",
+      "Description":true,
+      "Image":true,
+      "radioButton":"Overwrite",
+      "prompt":"best ear rings"
+    },
+    {
+      "productName":"d",
+      "Description":true,
+      "Image":true,
+      "radioButton":"Append",
+      "prompt":"best ear rings"
+    },
+    {
+      "productName":"h",
+      "Description":true,
+      "Image":true,
+      "radioButton":"Overwrite",
+      "prompt":"best ear rings"
+    },
+    {
+      "productName":"n",
+      "Description":false,
+      "Image":false,
+      "radioButton":"Append",
+      "prompt":"best ear rings"
+    }
+  ],
+  "SummaryOfProductReviews": [
+    {
+      "ProductName": "S",
+      "changeSentiment": "Negative"
+    },
+    {
+      "ProductName": "a",
+      "changeSentiment": "Neutral"
+    },
+    {
+      "ProductName": "Z",
+      "changeSentiment": "Positive"
+    }
+  ],
+  "IntelligentQA": [{
+    "prompt":"What is SAP?"
+  }] 
+}

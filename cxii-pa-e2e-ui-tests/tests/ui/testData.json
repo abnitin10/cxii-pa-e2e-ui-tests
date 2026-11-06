@@ -1,0 +1,520 @@
+{
+  "createAccountSummary": [
+    {
+      "accountName": "Cbont",
+      "opportunity": "51 - Cbont Deal",
+      "caseType": "81 - Washing Machine not rinsing clothes properly",
+      "renderLength": "Medium"
+    },
+    {
+      "accountName": "Cbont",
+      "opportunity": "",
+      "caseType": "",
+      "renderLength": "Long"
+    },
+    {
+      "accountName": "Cbont",
+      "opportunity": "",
+      "caseType": "",
+      "renderLength": "Short"
+    }
+  ],
+  "summarizeSalesOppotunity": [
+    {
+      "accountName": "Cbont",
+      "renderLength": "Long"
+    },
+    {
+      "accountName": "Cbont",
+      "renderLength": "short"
+    },
+    {
+      "accountName": "Cbont",
+      "renderLength": "Medium"
+    }
+  ],
+  "personalizedProspectingEmail": [
+    {
+      "firstName": "Joe",
+      "renderTone": "Happy",
+      "renderLength": "Medium",
+      "productTextbox": "Product Repair",
+      "talkingPointsTextbox": "Discuss the issue",
+      "callAction": "Schedule a call"
+    },
+    {
+      "firstName": "cbont",
+      "renderTone": "witty",
+      "renderLength": "Long",
+      "productTextbox": "",
+      "talkingPointsTextbox": "",
+      "callAction": ""
+    }
+  ],
+  "generateQuestionForDiscoveryCall": [
+    {
+      "firstName": "Joe",
+      "renderTone": "witty",
+      "renderCount": "10",
+      "challengesTextbox": "Repair issue",
+      "customerTextbox": "Resolved after multiple visits"
+    }
+  ],
+  "writeCaseOverview": [
+    {
+      "firstName": "cbont",
+      "renderTone": "witty",
+      "renderLength": "Long",
+      "highlightTextbox": "Certain defects found",
+      "actionTextbox": "scheduled visit to resolve"
+    }
+  ],
+  "writeCustServiceResponse": [
+    {
+      "searchTextbox": "cbont",
+      "informationTextbox": "check on defects",
+      "linkToPublicTextbox": "https://www.cbontindustries.com"
+    }
+  ],
+  "createKnowledgeBasedArticle": [
+    {
+      "accountName": "66",
+      "additionalInformation": "water input is not correct"
+    },
+    {
+      "accountName": "256",
+      "additionalInformation": ""
+    }
+  ],
+  "SummaryOfProductReviews": [
+    {
+      "ProductName": "S",
+      "changeSentiment": "Negative"
+    },
+    {
+      "ProductName": "a",
+      "changeSentiment": "Neutral"
+    },
+    {
+      "ProductName": "Z",
+      "changeSentiment": "Positive"
+    }
+  ],
+  "Meetings": [
+    {
+      "upcoming": {
+        "duration": "Next 3 Days",
+        "attendeeFilter": "All"
+      }
+    },
+    {
+      "past": {
+        "duration": "Last 30 Days",
+        "attendeeFilter": "Has Attendees"
+      }
+    },
+    {
+      "upcoming": {
+        "duration": "Next 5 Days",
+        "attendeeFilter": "Has Attendees"
+      }
+    },
+    {
+      "past": {
+        "duration": "Last 60 Days",
+        "attendeeFilter": "Has Attendees"
+      }
+    },
+    {
+      "past": {
+        "duration": "Last 180 Days",
+        "attendeeFilter": "Has Attendees"
+      }
+    },
+    {
+      "past": {
+        "duration": "Last 365 Days",
+        "attendeeFilter": "Has Attendees"
+      }
+    }
+  ],
+  "Scheduling": [
+    {
+      "title": "Test - Meeting",
+      "duration": "90",
+      "timeZone": "Africa/Algiers - Central",
+      "platform": "Microsoft Teams",
+      "description": "Test - Description",
+      "ReserveTimes": true,
+      "time": "2pm"
+    },
+    {
+      "title": "Test - Meeting",
+      "duration": "120",
+      "timeZone": "Asia/Calcutta - India Standard Time (GMT+5:30)",
+      "platform": "On Site",
+      "description": "Test - Description",
+      "ReserveTimes": false,
+      "time": "10Am"
+    }
+  ],
+  "generateBlogPost": [
+    {
+      "ProductName": "a",
+      "renderTone": "witty",
+      "renderLength": "Long",
+      "description": "the Canon a A480 is a classic gem worth rediscovering. Whether youre capturing travel memories, family moments, or everyday snapshots, this little powerhouse delivers clear, vibrant photos without overwhelming you with complex settings",
+      "instructions": "a A480 may not boast the flashy specs of today’s mirrorless monsters"
+    },
+    {
+      "ProductName": "a",
+      "renderTone": "Happy",
+      "renderLength": "Medium",
+      "description": "the Canon a A480 is a classic gem worth rediscovering. Whether youre capturing travel memories, family moments, or everyday snapshots, this little powerhouse delivers clear, vibrant photos without overwhelming you with complex settings",
+      "instructions": "a A480 may not boast the flashy specs of today’s mirrorless monsters"
+    },
+    {
+      "ProductName": "a",
+      "renderTone": "Happy",
+      "renderLength": "Medium",
+      "description": "the Canon a A480 ",
+      "instructions": "a A480 may not boast the flashy specs of today’s mirrorless monsters"
+    }
+  ],
+  "createSocialMediaPost": [
+    {
+      "ProductName": "a",
+      "renderTone": "Professional",
+      "renderLength": "Short",
+      "additionalGuidance": "",
+      "platformSelect": "Facebook"
+    },
+    {
+      "ProductName": "b",
+      "renderTone": "Witty",
+      "renderLength": "Medium",
+      "additionalGuidance": "Generate a statement with the product additional information",
+      "platformSelect": "X"
+    },
+    {
+      "ProductName": "c",
+      "renderTone": "Happy",
+      "renderLength": "Long",
+      "additionalGuidance": "",
+      "platformSelect": "Threads"
+    },
+    {
+      "ProductName": "d",
+      "renderTone": "Direct",
+      "renderLength": "Short",
+      "additionalGuidance": "Generate a statement with the product additional information",
+      "platformSelect": "Instagram"
+    },
+    {
+      "ProductName": "e",
+      "renderTone": "Empathetic",
+      "renderLength": "Medium",
+      "additionalGuidance": "",
+      "platformSelect": "Facebook"
+    },
+    {
+      "ProductName": "f",
+      "renderTone": "Personal",
+      "renderLength": "Long",
+      "additionalGuidance": "Generate a statement with the product additional information",
+      "platformSelect": "X"
+    },
+    {
+      "ProductName": "g",
+      "renderTone": "Confident",
+      "renderLength": "Short",
+      "additionalGuidance": "",
+      "platformSelect": "Threads"
+    },
+    {
+      "ProductName": "h",
+      "renderTone": "Professional",
+      "renderLength": "Medium",
+      "additionalGuidance": "Generate a statement with the product additional information",
+      "platformSelect": "Instagram"
+    }
+  ],
+  "generateProductBannerTxt": [
+    {
+      "ProductName": "a",
+      "CustomInstructions": "16 Shooting Modes - Including Auto, Portrait, Indoor, Night Snapshot, and more - just point, shoot, and let the camera do the thinking.",
+      "renderTone": "witty",
+      "renderSuggestions": "10"
+    },
+    {
+      "ProductName": "P",
+      "CustomInstructions": "",
+      "renderTone": "Empathetic",
+      "renderSuggestions": "15"
+    }
+  ],
+  "AskTheProduct": [
+    {
+      "ProductName": "a",
+      "askProductQuestion": "what is the Name of the Product?"
+    }
+  ],
+  "ProductDescription": [
+    {
+      "flowType": "Add Contact",
+      "template": "Standard Description Template",
+      "prompt": "Excellent Ear Rings",
+      "renderTone": "Happy",
+      "renderLength": "Medium"
+    },
+    {
+      "flowType": "List View",
+      "template": "Standard Description Template",
+      "prompt": "Excellent Ear Rings",
+      "renderTone": "Happy",
+      "renderLength": "Long",
+      "languagesToSelect": [
+        "EN - English",
+        "HI - Hindi"
+      ]
+    },
+    {
+      "flowType": "List View",
+      "template": "Standard Description Template",
+      "prompt": "Stylish Watch",
+      "renderTone": "Direct",
+      "renderLength": "Short",
+      "languagesToSelect": [
+        "DE - German",
+        "FR - French"
+      ]
+    },
+    {
+      "flowType": "List View",
+      "template": "Standard Description Template",
+      "prompt": "Comfortable Shoes",
+      "renderTone": "Empathetic",
+      "renderLength": "Long",
+      "languagesToSelect": [
+        "ES - Spanish",
+        "ES_CO - Spanish"
+      ]
+    },
+    {
+      "flowType": "List View",
+      "template": "Standard Description Template",
+      "prompt": "Comfortable Shoes",
+      "renderTone": "witty",
+      "renderLength": "Long",
+      "languagesToSelect": [
+        "ES - Spanish",
+        "ES_CO - Spanish"
+      ]
+    },
+    {
+      "flowType": "List View",
+      "template": "Standard Description Template",
+      "prompt": "Comfortable Shoes",
+      "renderTone": "Confident",
+      "renderLength": "Long",
+      "languagesToSelect": [
+        "ES - Spanish",
+        "ES_CO - Spanish"
+      ]
+    },
+    {
+      "flowType": "List View",
+      "template": "Standard Description Template",
+      "prompt": "Modern Sunglasses",
+      "renderTone": "Personal",
+      "renderLength": "Medium",
+      "languagesToSelect": [
+        "EN - English",
+        "DE - German",
+        "ES - Spanish",
+        "ES_CO - Spanish",
+        "FR - French",
+        "HI - Hindi"
+      ]
+    }
+  ],
+  "VisualSearch": [
+    {
+      "ImageName": "scarf.jpeg",
+      "flowType": "New",
+      "ObjectDetection": true,
+      "VisualInformationExtraction": true,
+      "Instructions": "what is the colour"
+    },
+    {
+      "ImageName": "jeans.jpeg",
+      "flowType": "New",
+      "ObjectDetection": false,
+      "VisualInformationExtraction": false,
+      "Instructions": "what is the colour"
+    },
+    {
+      "ImageName": "jeans.jpeg",
+      "flowType": "Existing",
+      "ObjectDetection": false,
+      "VisualInformationExtraction": false,
+      "Instructions": "what is the colour"
+    },
+    {
+      "ImageName": "jeans.jpeg",
+      "flowType": "Existing",
+      "ObjectDetection": true,
+      "VisualInformationExtraction": true,
+      "Instructions": "what is the colour"
+    }
+  ],
+  "ProductAttributes": [
+    {
+      "productName": "A",
+      "Description": true,
+      "Image": false,
+      "radioButton": "Overwrite",
+      "prompt": "Generate attributes for product",
+      "languagesToSelect": "EN - English"
+    },
+    {
+      "productName": "E",
+      "Description": false,
+      "Image": true,
+      "radioButton": "Append",
+      "prompt": "Generate attributes for product",
+      "languagesToSelect": "EN - English"
+    },
+    {
+      "productName": "F",
+      "Description": true,
+      "Image": false,
+      "radioButton": "Overwrite",
+      "prompt": "Generar atributos para producto",
+      "languagesToSelect": "ES - Spanish"
+    },
+    {
+      "productName": "F",
+      "Description": false,
+      "Image": true,
+      "radioButton": "Append",
+      "prompt": "Generar atributos para producto",
+      "languagesToSelect": "ES - Spanish"
+    },
+    {
+      "productName": "N",
+      "Description": true,
+      "Image": false,
+      "radioButton": "Overwrite",
+      "prompt": "Generate attributes for a product",
+      "languagesToSelect": "HI - Hindi"
+    },
+    {
+      "productName": "N",
+      "Description": false,
+      "Image": true,
+      "radioButton": "Append",
+      "prompt": "Generate attributes for a product",
+      "languagesToSelect": "HI - Hindi"
+    },
+    {
+      "productName": "N",
+      "Description": true,
+      "Image": false,
+      "radioButton": "Overwrite",
+      "prompt": "best ear rings",
+      "languagesToSelect": "DE - German"
+    },
+    {
+      "productName": "N",
+      "Description": true,
+      "Image": false,
+      "radioButton": "Append",
+      "prompt": "best ear rings",
+      "languagesToSelect": "DE - German"
+    },
+    {
+      "productName": "F",
+      "Description": true,
+      "Image": false,
+      "radioButton": "Overwrite",
+      "prompt": "best ear rings",
+      "languagesToSelect": "ES_CO - Spanish"
+    },
+    {
+      "productName": "F",
+      "Description": true,
+      "Image": false,
+      "radioButton": "Append",
+      "prompt": "best ear rings",
+      "languagesToSelect": "ES_CO - Spanish"
+    },
+    {
+      "productName": "F",
+      "Description": true,
+      "Image": false,
+      "radioButton": "Overwrite",
+      "prompt": "best ear rings",
+      "languagesToSelect": "FR - French"
+    },
+    {
+      "productName": "F",
+      "Description": true,
+      "Image": false,
+      "radioButton": "Append",
+      "prompt": "best ear rings",
+      "languagesToSelect": "FR - French"
+    }
+  ],
+  "IntelligentQA": [
+    {
+      "prompt": "What is SAP?"
+    }
+  ],
+  "Settings": [
+    {}
+  ],
+  "AIToolsBuilder": [
+    {
+      "Search": "ListOut Cases",
+      "description": "List out all the cases related to this account",
+      "additionalDescription": "Case List",
+      "Licenses": ["Sales"],
+      "SourceApplication": "SAP Commerce Cloud"
+    }
+  ],
+  "SmartActions": [
+    {
+      "duration": "Last 3 Days"
+    },
+    {
+      "duration": "Last 5 Days"
+    },
+    {
+      "duration": "Last 7 Days"
+    },
+    {
+      "duration": "Last 30 Days"
+    },
+    {
+      "duration": "Last 60 Days"
+    },
+    {
+      "duration": "Last 90 Days"
+    }
+  ],
+  "catalogOptimizationAgent": [
+    {
+      "AgentName": "catalogOptimizationAgent_Automation",
+      "AgentDescription": "catalogOptimizationAgent_Automation",
+      "ProductCatalog": "CXAICommerceJoni",
+      "CatalogVersion": "Staged",
+      "ClassificationCatalog": "CXAICommerceClassification",
+      "ClassificationCatalogVersion": "Version 1.0",
+      "languagesToSelect": [
+        "German (DE)",
+        "French (FR)"
+      ]
+    }
+  ]
+}

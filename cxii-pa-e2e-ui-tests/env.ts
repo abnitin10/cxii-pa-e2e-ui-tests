@@ -1,0 +1,9 @@
+export const E2E_BASE_URL = process.env.E2E_BASE_URL as string;
+export const E2E_API_BASE_URL = process.env.E2E_API_BASE_URL as string;
+export const E2E_USER_NAME = process.env.E2E_USER_NAME as string;
+export const E2E_PASSWORD = process.env.E2E_PASSWORD as string;
+export const JENKINS_USER = process.env.JENKINS_USER as string;
+export const JENKINS_TOKEN = process.env.JENKINS_PASSWORD as string;
+export const DEFAULT_USERNAME = process.env.JENKINS_USER as string;
+export const DEFAULT_PASSWORD = process.env.JENKINS_PASSWORD as string;
+export const EXECUTION_MODE = process.env.EXECUTION_MODE as string;

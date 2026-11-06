@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // make paths relative to project root
+    "paths": {
+      "@core/*": [
+        "modules/Core/*"
+      ],
+      "@sales/*": [
+        "modules/SalesAndService/*"
+      ],
+      "@commerce/*": [
+        "modules/Commerce/*"
+      ],
+      "@helpers/*": [
+        "tests/helpers/*"
+      ],
+      "@env": [
+        "env.ts"
+      ],
+      "@data": [
+        "tests/ui/testData.json"
+      ],
+      "@ui/*": [
+        "tests/ui/*"
+      ]
+    },
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ES6",
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

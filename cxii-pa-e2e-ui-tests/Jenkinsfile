@@ -1,0 +1,318 @@
+def jobProps = [
+  buildDiscarder(
+    logRotator(
+      numToKeepStr: '20',
+      daysToKeepStr: '15'
+    )
+  )
+]
+
+// Add trigger only for master
+if (env.BRANCH_NAME == 'master') {
+  // Environment: Dev
+  jobProps << pipelineTriggers([cron('H */6 * * *')])
+}
+
+// Add trigger only for canary
+if (env.BRANCH_NAME == 'canary') {
+  // Environment: Canary
+  jobProps << pipelineTriggers([cron('H */6 * * *')])
+}
+
+properties(jobProps)
+
+def DOCKER_REGISTRY = 'cxaimldev.azurecr.io'
+def RELEASE_VERSION = '2404'
+def podLabel = "cxii-pa-e2e-ui-tests-${new Date().format('yyyy-MM-dd.HH.mm', TimeZone.getTimeZone('America/Los_Angeles'))}"
+def PLAYWRIGHT_VERSION
+def PLAYWRIGHT_DOCKER_IMAGE
+def scmVars
+def CONTAINER_NAME = 'allure-reports'
+def BLOB_NAME = 'allure-report'
+ALLURE_REPORT_URL = ""
+
+def getPlaywrightVersion() {
+  try {
+    def packageLockJson = readFile('package-lock.json')
+    def packages = new groovy.json.JsonSlurper().parseText(packageLockJson).packages
+    def pw = packages.find { it.key == 'node_modules/@playwright/test' }
+    if (!pw) error 'Playwright dependency not found in package-lock.json'
+    return pw.value.version
+  } catch (e) {
+    echo "Error reading Playwright version: ${e.message}"
+    throw e
+  }
+}
+
+def notifySuccess() {
+  def testSummary = ''
+  def mentionQA = ''
+
+  if (fileExists('results-summary.json')) {
+    def summary = sh(
+      script: '''jq -r '.stats | [.expected, .unexpected, .skipped, .flaky, (.duration / 1000)] | @csv' results-summary.json''',
+      returnStdout: true
+    ).trim().replace('"', '')
+
+    def (passed, failed, skipped, flaky, duration) = summary.split(',')
+    def durationInSeconds = duration.toFloat()
+    def minutes = (int)(durationInSeconds / 60)
+    def seconds = (int)(durationInSeconds % 60)
+    def formattedDuration = String.format('%02dm %02ds', minutes, seconds)
+
+    mentionQA = (flaky.toInteger() > 0) ? ":fiori-info: *Flaky tests identified!* Please review for consistency" : ""
+
+    testSummary = """
+      *🎯 Test Report Summary*
+      • *Branch:* `${env.BRANCH_NAME}`
+      • *Results:* ✅ Passed *${passed}* | ⏭️ Skipped *${skipped}* | 🟠 Flaky *${flaky}*
+      • *Duration:* ⏱️ *${formattedDuration}*
+      🔗 Allure Report Link : ${ALLURE_REPORT_URL}
+    """
+  } else {
+    testSummary = "*⚠️ Test summary not found.*"
+  }
+
+  def slackMessage = """
+${mentionQA}${testSummary}
+:point_up: Heads up: The last committer may not be responsible.
+""".stripIndent()
+
+  def payload = groovy.json.JsonOutput.toJson([
+    attachments: [[
+      color: "good",
+      text : slackMessage
+    ]]
+  ])
+
+  withCredentials([string(credentialsId: 'slack-webhook-url', variable: 'SLACK_WEBHOOK')]) {
+    sh """
+      curl -X POST -H 'Content-type: application/json' \
+      --data '${payload}' \
+      ${SLACK_WEBHOOK}
+    """
+  }
+}
+
+def notifyFailed(reason) {
+  def testSummary = ''
+
+  if (fileExists('results-summary.json')) {
+    def summary = sh(
+      script: '''jq -r '.stats | [.expected, .unexpected, .skipped, .flaky, (.duration / 1000)] | @csv' results-summary.json''',
+      returnStdout: true
+    ).trim().replace('"', '')
+
+   def failedTests = sh(
+  script: '''
+    jq -r '
+      .. | objects
+      | select(has("tests"))
+      | .title as $specTitle
+      | select($specTitle != null and $specTitle != "")
+      | .tests[]
+      | .results[]
+      | select(.status=="failed" or .status=="timedOut")
+      | "\\($specTitle) : \\(.error.message // .error // "Unknown failure reason")"
+    ' results-summary.json | sed "s/\\x1b\\[[0-9;]*m//g"
+  ''',
+  returnStdout: true
+).trim()
+
+def lines = failedTests.readLines()
+def uniqueLines = lines.toSet().toList()
+uniqueLines.sort()
+
+    def (passed, failed, skipped, flaky, duration) = summary.split(',')
+    def minutes = (int)(duration.toFloat() / 60)
+    def seconds = (int)(duration.toFloat() % 60)
+    def formattedDuration = String.format('%02dm %02ds', minutes, seconds)
+    testSummary = """
+      *🎯 Test Report Summary*
+      • *Branch:* `${env.BRANCH_NAME}`
+      • *Results:* ✅ Passed *${passed}* | ❌ Failed *${failed}* | ⏭️ Skipped *${skipped}* | 🟠 Flaky *${flaky}*
+      • *Duration:* ⏱️ *${formattedDuration}*
+      🔗 Allure Report Link : ${ALLURE_REPORT_URL}
+
+      *❌ Failed Test Cases (with reason):*
+ ${uniqueLines.join("\n")}
+    """
+  }
+  echo "${testSummary}"
+
+  def slackMessage = """:alert: *High Alert: Test failures detected!* :alert:\n${testSummary}"""
+
+  def payload = groovy.json.JsonOutput.toJson([
+    attachments: [[color: "danger", text: slackMessage]]
+  ])
+
+  withCredentials([string(credentialsId: 'slack-webhook-url', variable: 'SLACK_WEBHOOK')]) {
+  writeFile file: 'slack_payload.json', text: payload
+  sh '''
+    curl -X POST -H "Content-type: application/json" \
+    --data @slack_payload.json \
+    "$SLACK_WEBHOOK"
+  '''
+  }
+}
+
+node {
+  stage('Determine Playwright Version') {
+    scmVars = checkout scm
+    PLAYWRIGHT_VERSION = getPlaywrightVersion()
+    PLAYWRIGHT_DOCKER_IMAGE = "mcr.microsoft.com/playwright:v${PLAYWRIGHT_VERSION}-jammy"
+    echo "Using Playwright Docker Image: ${PLAYWRIGHT_DOCKER_IMAGE}"
+  }
+}
+
+podTemplate(
+  label: podLabel,
+  namespace: 'thunderbridge',
+  nodeUsageMode: 'EXCLUSIVE',
+  containers: [
+    containerTemplate(
+      name: 'node-playwright',
+      image: "${PLAYWRIGHT_DOCKER_IMAGE}",
+      ttyEnabled: true,
+      command: 'cat',
+      resourceRequestCpu: '2',
+      resourceLimitCpu: '4',
+      resourceRequestMemory: '16Gi',
+      resourceLimitMemory: '64Gi'
+    )
+  ],
+  volumes: [
+    secretVolume(mountPath: '/kaniko/.docker', secretName: 'docker-registry-auth')
+  ],
+  envVars: [
+    secretEnvVar(key: 'DOCKER_REGISTRY_USER', secretName: 'artifactory', secretKey: 'API_USER'),
+    secretEnvVar(key: 'DOCKER_REGISTRY_API_KEY', secretName: 'artifactory', secretKey: 'API_KEY'),
+    envVar(key: 'DOCKER_REGISTRY', value: DOCKER_REGISTRY),
+    envVar(key: 'CONTAINER_NAME', value: CONTAINER_NAME),
+    envVar(key: 'BLOB_NAME', value: BLOB_NAME),
+    secretEnvVar(key: 'AZURE_STORAGE_CONNECTION_STRING', secretName: 'cxii-pa-e2e-ui-tests-azure-storage-conn-string', secretKey: 'azure-storage-conn-string')
+  ]
+) {
+  node(podLabel) {
+    stage('Checkout Repo') {
+      deleteDir()
+      scmVars = checkout scm
+    }
+
+    container('node-playwright') {
+      boolean testFailed = false
+      def result = 0
+
+      try {
+        stage('Verify Tool Java') {
+          sh '''
+            apt-get update
+            apt-get install -y openjdk-11-jdk zip jq curl apt-transport-https lsb-release gnupg
+            curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+            java -version
+            zip -v
+          '''
+        }
+
+        stage('Install Dependencies') {
+          sh 'npm ci'
+          sh 'npm install --save-dev tsconfig-paths'
+        }
+
+        stage('Inject Jenkins Credentials') {
+          withCredentials([
+            usernamePassword(
+              credentialsId: 'github-jenkins-mgmt-serviceuser',
+              usernameVariable: 'JENKINS_USERNAME',
+              passwordVariable: 'JENKINS_PASSWORD'
+            ),
+          ]) {
+            sh '''
+              echo "JENKINS_USERNAME=$JENKINS_USERNAME" >> .env
+              echo "JENKINS_PASSWORD=$JENKINS_PASSWORD" >> .env
+            '''
+          }
+        }
+
+        stage('Run Playwright Tests') {
+          switch(env.BRANCH_NAME) {
+            case 'canary':
+              result = sh(script: 'npm run test:canary', returnStatus: true)
+              break
+            case 'prod':
+              result = sh(script: 'npm run test:prod-dewc', returnStatus: true)
+              if (result == 0) result = sh(script: 'npm run test:prod-usea', returnStatus: true)
+              break
+            default:
+              result = sh(script: 'npm run test:dev', returnStatus: true)
+          }
+          if (result != 0) {
+            echo "Playwright tests failed with status ${result}"
+          }
+        }
+
+        stage('Generate Allure Report') {
+          sh '''
+            mkdir -p allure-results
+            
+            # --- Environment Info ---
+            cat > allure-results/environment.properties <<EOF
+            Build=${BUILD_NUMBER}
+            Branch=${BRANCH_NAME}
+            OS=$(uname -s)
+            NodeVersion=$(node -v) 
+            NpmVersion=$(npm -v)
+            EOF
+          '''
+          sh '''
+            npx allure generate --clean -o allure-report allure-results
+          '''
+        }
+
+        stage('Publish Allure Report') {
+          // Extract storage account name from connection string
+          def storageAccount = sh(
+            script: '''echo $AZURE_STORAGE_CONNECTION_STRING | sed -n 's/.*AccountName=\\([^;]*\\).*/\\1/p' ''',
+            returnStdout: true
+          ).trim()
+
+          def dateTimeFolder = new Date().format("yyyy-MM-dd_HH-mm-ss", TimeZone.getTimeZone("UTC"))
+          def finalPath = "${dateTimeFolder}"
+
+          // Upload new report into $web with date-time path
+          sh """
+            az storage blob upload-batch \
+              --account-name ${storageAccount} \
+              --destination "\\\$web" \
+              --destination-path ${finalPath} \
+              --source ./allure-report \
+              --overwrite
+          """
+
+          // Build public static website URL
+          ALLURE_REPORT_URL = "https://${storageAccount}.z13.web.core.windows.net/${finalPath}/index.html"
+          echo "✅ Allure Report uploaded at: ${ALLURE_REPORT_URL}"
+        }
+
+        if (result != 0) {
+          error("Playwright tests failed with status ${result}")
+        }
+      } catch (e) {
+        testFailed = true
+        currentBuild.result = 'FAILED'
+
+        if (env.BRANCH_NAME in ['master', 'canary']) {
+          notifyFailed(e.getMessage())
+        }
+        throw e
+
+      } finally {
+        if (env.BRANCH_NAME in ['master', 'canary']) {
+          if (!testFailed) {
+            notifySuccess()
+          }
+        }
+      }
+    }
+  }
+}
